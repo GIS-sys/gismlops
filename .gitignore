@@ -1,2 +1,10 @@
+# Poetry
 dist/
+
+# Python
+__pycache__/
+
+# Program results
+data/
+model.pth
 
