@@ -17,6 +17,7 @@ pytest = "7.4.2"
 
 [tool.poetry.scripts]
 learn = "gismlops.main:start"
+predict = "gismlops.main:predict"
 
 
 [[tool.poetry.source]]
