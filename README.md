@@ -4,9 +4,15 @@ Egorov Gordei, MIPT, Б05-027
 
 ## Requirements
 
-1) install [poetry (>=1.6.1)](https://python-poetry.org/docs/#installing-with-the-official-installer)
+1) install [miniconda](https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html)
 
-2) install [miniconda](https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html)
+2) create new environment in conda and activate it
+
+3) install poetry using conda
+
+4) update poetry using ```pip install poetry -U```
+
+5) install dependencies using poetry
 
 # dev
 
@@ -26,4 +32,3 @@ Useful pre-commit commands:
 
 To start working make sure you:
 1) activated conda environment
-
