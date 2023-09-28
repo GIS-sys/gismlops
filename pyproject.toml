@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gismlops"
-version = "0.0.1"
+version = "0.0.2"
 description = ""
 authors = ["Gordei Egorov <gordeiegorov@gmail.com>"]
 readme = "README.md"
@@ -11,12 +11,8 @@ numpy = "1.24.4"
 torch = {version = "^2.0.1+cpu", source = "pytorch"}
 torchvision = {version = "^0.15.2+cpu", source = "pytorch"}
 
-[tool.poetry.dev-dependencies]
-pre-commit = "3.4.0"
-pytest = "7.4.2"
-
 [tool.poetry.scripts]
-learn = "gismlops.main:start"
+learn = "gismlops.main:learn"
 predict = "gismlops.main:predict"
 
 
@@ -25,6 +21,32 @@ name = "pytorch"
 url = "https://download.pytorch.org/whl/cpu"
 priority = "explicit"
 
+[tool.poetry.dev-dependencies]
+pre-commit = "^2.16.0"
+pytest = "^6.2.5"
+
+[tool.black]
+line-length = 90
+target-version = ["py39"]
+
+[tool.isort]
+src_paths = ["ds_project"]
+profile = "black"
+line_length = 90
+lines_after_imports = 2
+
+[tool.nbqa.config]
+black = "pyproject.toml"
+isort = "pyproject.toml"
+flake8 = "setup.cfg"
+
+[tool.nbqa.addopts]
+flake8 = ["--extend-ignore=E402"]
+
+[tool.nbqa.mutate]
+black = 1
+isort = 1
+
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
