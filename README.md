@@ -13,10 +13,17 @@ Egorov Gordei, MIPT, Б05-027
 Useful poetry comands:
 - to build: poetry build
 - to show project structure: poetry show --tree
-- to install dependencies in current env: poetry install
+- to install dependencies in current env: poetry lock; poetry install
 - to run script: poetry run [script name from pyproject.toml]
 
 Useful conda commands:
 - to permanently remove auto-base env: conda config --set auto\_activate\_base false
 - to activate base env: conda activate
+- to deactivate base env: conda deactivate
+
+Useful pre-commit commands:
+- to init pre-commit config in new repository: pre-commit install
+
+To start working make sure you:
+1) activated conda environment
 
