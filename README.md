@@ -29,6 +29,7 @@ Useful conda commands:
 
 Useful pre-commit commands:
 - to init pre-commit config in new repository: pre-commit install
+- to run per-commit on all files: pre-commit run --all-files
 
 To start working make sure you:
 1) activated conda environment
