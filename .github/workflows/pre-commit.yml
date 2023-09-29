@@ -24,6 +24,7 @@ jobs:
 
       - name: install requirements
         run: |
+             poetry lock
              poetry install
 
       - name: pre-commit
