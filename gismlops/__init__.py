@@ -1,1 +1,1 @@
-from .main import predict
+from .main import learn, predict
