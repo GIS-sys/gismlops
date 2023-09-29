@@ -16,16 +16,17 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
+#      - name: Install Poetry
+#        uses: snok/install-poetry@v1
+#        with:
+#          virtualenvs-create: true
+#          virtualenvs-in-project: true
 
       - name: install requirements
         run: |
-             poetry lock
-             poetry install
+            # poetry lock
+            #poetry install precommit
+            pip install pre-commit
 
       - name: pre-commit
         run: |
