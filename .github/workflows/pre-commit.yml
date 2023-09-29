@@ -6,28 +6,9 @@ on:
       - dev
 
 jobs:
-  TestPreCommit:
-    runs-on: ubuntu-20.04
+  pre-commit:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
-
-#      - name: Install Poetry
-#        uses: snok/install-poetry@v1
-#        with:
-#          virtualenvs-create: true
-#          virtualenvs-in-project: true
-
-      - name: install requirements
-        run: |
-            # poetry lock
-            #poetry install precommit
-            pip install pre-commit
-
-      - name: pre-commit
-        run: |
-             pre-commit
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+    - uses: pre-commit/action@v3.0.0
