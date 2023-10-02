@@ -1,1 +1,1 @@
-from .main import learn, predict
+from .main import infer, model, train, utils

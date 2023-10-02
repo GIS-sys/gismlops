@@ -10,10 +10,11 @@ python = "^3.8"
 numpy = "1.24.4"
 torch = {version = "^2.0.1+cpu", source = "pytorch"}
 torchvision = {version = "^0.15.2+cpu", source = "pytorch"}
+tqdm = "v4.66.1"
 
 [tool.poetry.scripts]
-learn = "gismlops.main:learn"
-predict = "gismlops.main:predict"
+train = "gismlops.train:train"
+infer = "gismlops.infer:infer"
 
 
 [[tool.poetry.source]]
