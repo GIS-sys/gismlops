@@ -41,15 +41,15 @@ def train():
     loss_fn = nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=1e-3)
 
-    epochs = 5
+    epochs = 10
     for t in range(epochs):
         print(f"Epoch {t+1}\n-------------------------------")
         epochTrain(train_dataloader, model, loss_fn, optimizer, device)
         epochTest(test_dataloader, model, loss_fn, device)
     print("Done!")
 
-    torch.save(model.state_dict(), "model.pth")
-    print("Saved PyTorch Model State to model.pth")
+    torch.save(model.state_dict(), "data/model.pth")
+    print("Saved PyTorch Model State to data/model.pth")
 
 
 if __name__ == "__main__":

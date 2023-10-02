@@ -20,7 +20,7 @@ def infer():
 
     device = getDevice()
     model = NeuralNetwork().to(device)
-    model.load_state_dict(torch.load("model.pth"))
+    model.load_state_dict(torch.load("data/model.pth"))
     model.eval()
 
     # classes = [
@@ -41,7 +41,7 @@ def infer():
     loss_fn = nn.CrossEntropyLoss()
     answers = epochTest(test_dataloader, model, loss_fn, device)
 
-    pd.DataFrame(answers).to_csv("testfile.csv", index=False)
+    pd.DataFrame(answers).to_csv("data/test.csv", index=False)
 
 
 if __name__ == "__main__":
