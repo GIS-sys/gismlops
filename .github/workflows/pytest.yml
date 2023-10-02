@@ -4,34 +4,6 @@ on:
   pull_request:
     branches:
       - dev
-
-#jobs:
-#  pytest:
-#    runs-on: ubuntu-20.04
-#    steps:
-#      - uses: actions/checkout@v2
-#
-#      - name: Setup Python
-#        uses: actions/setup-python@v4
-#        with:
-#          python-version: ${{ matrix.python-version }}
-#
-#      - name: Install Poetry
-#        uses: snok/install-poetry@v1
-#        with:
-#          virtualenvs-create: true
-#          virtualenvs-in-project: true
-#
-#      - name: install requirements
-#        run: |
-#            poetry env use
-#            poetry lock
-#            poetry install
-#
-#      - name: test
-#        run: |
-#             pytest
-
 jobs:
   ci:
     runs-on: ubuntu-latest

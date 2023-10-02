@@ -42,6 +42,7 @@ def infer():
     answers = epochTest(test_dataloader, model, loss_fn, device)
 
     pd.DataFrame(answers).to_csv("data/test.csv", index=False)
+    return answers
 
 
 if __name__ == "__main__":
