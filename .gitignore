@@ -1,9 +1,9 @@
 # Poetry
 dist/
+poetry.lock
 
 # Python
 __pycache__/
 
 # Program results
 data/
-model.pth

@@ -21,6 +21,7 @@ Useful poetry comands:
 - to show project structure: poetry show --tree
 - to install dependencies in current env: poetry lock; poetry install
 - to run script: poetry run [script name from pyproject.toml]
+- to run tests: poetry run pytest
 
 Useful conda commands:
 - to permanently remove auto-base env: conda config --set auto\_activate\_base false
