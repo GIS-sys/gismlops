@@ -1,10 +1,10 @@
 import torch
-from model import NeuralNetwork
+from gismlops.model import NeuralNetwork
+from gismlops.utils import epochTest, epochTrain, getDevice
 from torch import nn
 from torch.utils.data import DataLoader
 from torchvision import datasets
 from torchvision.transforms import ToTensor
-from utils import epochTest, epochTrain, getDevice
 
 
 # new model

@@ -1,5 +1,5 @@
-from infer import infer
-from train import train
+from gismlops.infer import infer
+from gismlops.train import train
 
 
 if __name__ == "__main__":

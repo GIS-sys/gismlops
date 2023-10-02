@@ -1,8 +1,8 @@
 import torch
-from model import NeuralNetwork
+from gismlops.model import NeuralNetwork
+from gismlops.utils import getDevice
 from torchvision import datasets
 from torchvision.transforms import ToTensor
-from utils import getDevice
 
 
 # saved
