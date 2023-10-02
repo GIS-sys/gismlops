@@ -23,26 +23,33 @@ def infer():
     model.load_state_dict(torch.load("data/model.pth"))
     model.eval()
 
-    # classes = [
-    #     "T-shirt/top",
-    #     "Trouser",
-    #     "Pullover",
-    #     "Dress",
-    #     "Coat",
-    #     "Sandal",
-    #     "Shirt",
-    #     "Sneaker",
-    #     "Bag",
-    #     "Ankle boot",
-    # ]
-
     batch_size = 64
     test_dataloader = DataLoader(test_data, batch_size=batch_size)
     loss_fn = nn.CrossEntropyLoss()
     answers = epochTest(test_dataloader, model, loss_fn, device)
 
-    pd.DataFrame(answers).to_csv("data/test.csv", index=False)
-    return answers
+    classes = [
+        "T-shirt/top",
+        "Trouser",
+        "Pullover",
+        "Dress",
+        "Coat",
+        "Sandal",
+        "Shirt",
+        "Sneaker",
+        "Bag",
+        "Ankle boot",
+    ]
+
+    answersDataFrame = pd.DataFrame(answers, columns=["target_index", "predicted_index"])
+    answersDataFrame["target_label"] = answersDataFrame["target_index"].map(
+        lambda x: classes[x]
+    )
+    answersDataFrame["predicted_label"] = answersDataFrame["predicted_index"].map(
+        lambda x: classes[x]
+    )
+    answersDataFrame.to_csv("data/test.csv", index=False)
+    return answersDataFrame
 
 
 if __name__ == "__main__":
