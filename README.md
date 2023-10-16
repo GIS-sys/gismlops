@@ -2,6 +2,8 @@
 
 Egorov Gordei, MIPT, Б05-027
 
+Predicting clothing types, training on FashionMNIST dataset
+
 ## Requirements
 
 1) install [miniconda](https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html)
