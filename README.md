@@ -34,5 +34,8 @@ Useful pre-commit commands:
 - to init pre-commit config in new repository: pre-commit install
 - to run per-commit on all files: pre-commit run --all-files
 
+Useful dvc commands:
+- to init ???
+
 To start working make sure you:
 1) activated conda environment
