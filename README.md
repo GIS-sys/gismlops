@@ -38,7 +38,7 @@ Useful dvc commands:
 - to init dvc: dvc init
 - to add gdrive remote: dvc remote add -d storage gdrive://1Z3JfbS00SLrhHPVh7igikSy4Dbbug-z
 - to add new files and push them: dvc add data/; dvc commit; dvc push
-- to restore to current hash: ???
+- to restore to current hash: dvc pull
 
 To start working make sure you:
 1) activated conda environment
