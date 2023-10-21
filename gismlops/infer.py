@@ -1,15 +1,22 @@
+import hydra
 import pandas as pd
 import torch
+from gismlops.config import Params
 from gismlops.model import NeuralNetwork
 from gismlops.utils import epochTest, getDevice
+from hydra.core.config_store import ConfigStore
 from torch import nn
 from torch.utils.data import DataLoader
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 
 
-# saved
-def infer():
+cs = ConfigStore.instance()
+cs.store(name="params", node=Params)
+
+
+@hydra.main(config_path="conf", config_name="config", version_base="1.3")
+def infer(cfg: Params):
     # Download test data from open datasets.
     test_data = datasets.FashionMNIST(
         root="data",

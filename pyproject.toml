@@ -16,8 +16,8 @@ torchvision = {version = "^0.15.2+cpu", source = "pytorch"}
 tqdm = "v4.66.1"
 
 [tool.poetry.scripts]
-train = "gismlops.train:train"
-infer = "gismlops.infer:infer"
+train = "gismlops.commands:_train"
+infer = "gismlops.commands:_infer"
 
 
 [[tool.poetry.source]]
