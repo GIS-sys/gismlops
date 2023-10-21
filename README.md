@@ -35,7 +35,9 @@ Useful pre-commit commands:
 - to run per-commit on all files: pre-commit run --all-files
 
 Useful dvc commands:
-- to init ???
+- to init dvc: dvc init
+- to add gdrive remote: dvc remote add -d storage gdrive://1Z3JfbS00SLrhHPVh7igikSy4Dbbug-z
+- to add new files and push them: ???
 
 To start working make sure you:
 1) activated conda environment
