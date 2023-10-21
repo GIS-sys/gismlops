@@ -6,4 +6,6 @@ poetry.lock
 __pycache__/
 
 # Program results
-data/
+output/**
+
+/data

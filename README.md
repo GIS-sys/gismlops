@@ -2,6 +2,8 @@
 
 Egorov Gordei, MIPT, Б05-027
 
+Predicting clothing types, training on FashionMNIST dataset
+
 ## Requirements
 
 1) install [miniconda](https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html)
@@ -31,6 +33,12 @@ Useful conda commands:
 Useful pre-commit commands:
 - to init pre-commit config in new repository: pre-commit install
 - to run per-commit on all files: pre-commit run --all-files
+
+Useful dvc commands:
+- to init dvc: dvc init
+- to add gdrive remote: dvc remote add -d storage gdrive://1Z3JfbS00SLrhHPVh7igikSy4Dbbug-z
+- to add new files and push them: dvc add data/; dvc commit; dvc push
+- to restore to current hash: ???
 
 To start working make sure you:
 1) activated conda environment
