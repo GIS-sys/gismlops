@@ -1,5 +1,6 @@
 import hydra
 import lightning.pytorch as pl
+import torch
 from gismlops.data import MyDataModule
 from gismlops.model import MyModel
 from omegaconf import DictConfig
@@ -14,10 +15,10 @@ def infer(cfg: DictConfig):
         val_size=cfg.data.val_size,
     )
     model = MyModel(cfg)
+    model.load_state_dict(torch.load(cfg.artifacts.model.path))
 
     trainer = pl.Trainer(
         accelerator=cfg.train.accelerator,
-        devices=cfg.train.devices,
         precision=cfg.train.precision,
         max_steps=cfg.train.num_warmup_steps + cfg.train.num_training_steps,
         accumulate_grad_batches=cfg.train.grad_accum_steps,
@@ -33,7 +34,7 @@ def infer(cfg: DictConfig):
         enable_checkpointing=cfg.artifacts.checkpoint.use,
     )
 
-    print(trainer.predict(model, datamodule=dm))
+    trainer.test(model, datamodule=dm)
 
 
 if __name__ == "__main__":

@@ -2,6 +2,7 @@ import os
 
 import hydra
 import lightning.pytorch as pl
+import torch
 from gismlops.data import MyDataModule
 from gismlops.model import MyModel
 from omegaconf import DictConfig
@@ -78,6 +79,7 @@ def train(cfg: DictConfig):
         tuner.scale_batch_size(model, datamodule=dm, mode="power")
 
     trainer.fit(model, datamodule=dm)
+    torch.save(model.state_dict(), cfg.artifacts.model.path)
 
 
 if __name__ == "__main__":

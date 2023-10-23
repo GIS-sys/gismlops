@@ -1,3 +1,4 @@
+import math
 from typing import Any
 
 import lightning.pytorch as pl
@@ -43,7 +44,7 @@ class MyModel(pl.LightningModule):
         X, y = batch
         pred = self(X)
         loss = self.loss_fn(pred, y)
-        correct = (pred.argmax(1) == y).type(torch.float).sum().item()
+        correct = (pred.argmax(1) == y).type(torch.float).sum().item() / y.shape[0]
         self.log("test_loss", loss, on_step=True, on_epoch=True, prog_bar=True)
         self.log("test_correct", correct, on_step=True, on_epoch=True, prog_bar=True)
         return {"test_loss": loss, "test_correct": correct}
@@ -59,33 +60,16 @@ class MyModel(pl.LightningModule):
             else:
                 return max(
                     0.0,
-                    float(training_steps - current_step)
-                    / float(max(1, training_steps - warmup_steps)),
+                    math.cos(
+                        float(training_steps - current_step)
+                        / float(max(1, training_steps - warmup_steps))
+                    ),
                 )
 
         return warmup
 
     def configure_optimizers(self) -> Any:
-        param_optimizer = list(self.named_parameters())
-        no_decay = ["bias", "LayerNorm.bias", "LayerNorm.weight"]
-        optimizer_grouped_parameters = [
-            {
-                "params": [
-                    p for n, p in param_optimizer if not any(nd in n for nd in no_decay)
-                ],
-                "weight_decay": self.cfg["train"]["weight_decay"],
-            },
-            {
-                "params": [
-                    p for n, p in param_optimizer if any(nd in n for nd in no_decay)
-                ],
-                "weight_decay": 0.0,
-            },
-        ]
-        optimizer = torch.optim.SGD(
-            optimizer_grouped_parameters,
-            lr=self.cfg.train.learning_rate,
-        )
+        optimizer = torch.optim.SGD(self.parameters(), lr=self.cfg.train.learning_rate)
         lr_scheduler = torch.optim.lr_scheduler.LambdaLR(
             optimizer,
             lr_lambda=type(self).warmup_wrapper(

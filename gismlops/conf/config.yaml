@@ -7,6 +7,8 @@ artifacts:
         save_top_k: 3
         every_n_train_steps:
         every_n_epochs: 1
+    model:
+        path: data/model.pth
     experiment_name: predict_fashion
 
 callbacks:
@@ -25,8 +27,7 @@ general:
     seed: 42
 
 train:
-    learning_rate: 2e-5
-    weight_decay: 0.01
+    learning_rate: 1e-3
     num_warmup_steps: 100
     num_training_steps: 1000
     grad_accum_steps: 4
