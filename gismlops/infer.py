@@ -37,8 +37,16 @@ def infer(cfg: DictConfig):
                 save_dir="./.logs/my-wandb-logs",
             ),
         ]
+        callbacks = [
+            pl.callbacks.LearningRateMonitor(logging_interval="step"),
+            pl.callbacks.DeviceStatsMonitor(),
+            pl.callbacks.RichModelSummary(
+                max_depth=cfg.callbacks.model_summary.max_depth
+            ),
+        ]
     else:
         loggers = []
+        callbacks = []
 
     trainer = pl.Trainer(
         accelerator=cfg.train.accelerator,
@@ -56,6 +64,7 @@ def infer(cfg: DictConfig):
         detect_anomaly=cfg.train.detect_anomaly,
         enable_checkpointing=cfg.artifacts.checkpoint.use,
         logger=loggers,
+        callbacks=callbacks,
     )
 
     trainer.test(model, datamodule=dm)

@@ -34,14 +34,16 @@ def train(cfg: DictConfig):
                 save_dir="./.logs/my-wandb-logs",
             ),
         ]
+        callbacks = [
+            pl.callbacks.LearningRateMonitor(logging_interval="step"),
+            pl.callbacks.DeviceStatsMonitor(),
+            pl.callbacks.RichModelSummary(
+                max_depth=cfg.callbacks.model_summary.max_depth
+            ),
+        ]
     else:
         loggers = []
-
-    callbacks = [
-        pl.callbacks.LearningRateMonitor(logging_interval="step"),
-        pl.callbacks.DeviceStatsMonitor(),
-        pl.callbacks.RichModelSummary(max_depth=cfg.callbacks.model_summary.max_depth),
-    ]
+        callbacks = []
 
     if cfg.callbacks.swa.use:
         callbacks.append(
