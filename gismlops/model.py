@@ -2,6 +2,7 @@ import math
 from typing import Any
 
 import lightning.pytorch as pl
+import numpy as np
 import torch
 from torch import nn
 
@@ -47,10 +48,12 @@ class MyModel(pl.LightningModule):
         correct = (pred.argmax(1) == y).type(torch.float).sum().item() / y.shape[0]
         self.log("test_loss", loss, on_step=True, on_epoch=True, prog_bar=True)
         self.log("test_correct", correct, on_step=True, on_epoch=True, prog_bar=True)
-        return {"test_loss": loss, "test_correct": correct}
+        return {"test_loss": loss, "test_correct": correct, "a": pred}
 
     def predict_step(self, batch: Any, batch_idx: int, dataloader_idx: int = 0) -> Any:
-        return self(batch)
+        X, y = batch
+        pred = self(X)
+        return np.stack((y, pred.argmax(1)))
 
     @staticmethod
     def warmup_wrapper(warmup_steps: int, training_steps: int):

@@ -51,6 +51,9 @@ class MyDataModule(pl.LightningDataModule):
         )
         self.val_dataset = torch.utils.data.Subset(self.train_val_dataset, val_indexes)
 
+    def predict_dataloader(self) -> torch.utils.data.DataLoader:
+        return self.test_dataloader()
+
     def test_dataloader(self) -> torch.utils.data.DataLoader:
         return torch.utils.data.DataLoader(
             self.test_dataset,
