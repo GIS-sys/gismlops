@@ -1,3 +1,5 @@
+import os
+
 import hydra
 import lightning.pytorch as pl
 import torch
@@ -17,6 +19,20 @@ def infer(cfg: DictConfig):
     model = MyModel(cfg)
     model.load_state_dict(torch.load(cfg.artifacts.model.path))
 
+    os.makedirs("./.logs/my-wandb-logs", exist_ok=True)
+    loggers = [
+        pl.loggers.CSVLogger("./.logs/my-csv-logs", name=cfg.artifacts.experiment_name),
+        pl.loggers.MLFlowLogger(
+            experiment_name=cfg.artifacts.experiment_name,
+            tracking_uri="file:./.logs/my-mlflow-logs",
+        ),
+        pl.loggers.WandbLogger(
+            project="mlops-logging-demo",
+            name=cfg.artifacts.experiment_name,
+            save_dir="./.logs/my-wandb-logs",
+        ),
+    ]
+
     trainer = pl.Trainer(
         accelerator=cfg.train.accelerator,
         precision=cfg.train.precision,
@@ -32,6 +48,7 @@ def infer(cfg: DictConfig):
         log_every_n_steps=cfg.train.log_every_n_steps,
         detect_anomaly=cfg.train.detect_anomaly,
         enable_checkpointing=cfg.artifacts.checkpoint.use,
+        logger=loggers,
     )
 
     trainer.test(model, datamodule=dm)

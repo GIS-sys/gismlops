@@ -18,6 +18,7 @@ def train(cfg: DictConfig):
     )
     model = MyModel(cfg)
 
+    os.makedirs("./.logs/my-wandb-logs", exist_ok=True)
     loggers = [
         pl.loggers.CSVLogger("./.logs/my-csv-logs", name=cfg.artifacts.experiment_name),
         pl.loggers.MLFlowLogger(
@@ -25,7 +26,9 @@ def train(cfg: DictConfig):
             tracking_uri="file:./.logs/my-mlflow-logs",
         ),
         pl.loggers.WandbLogger(
-            project="mlops-logging-demo", name=cfg.artifacts.experiment_name
+            project="mlops-logging-demo",
+            name=cfg.artifacts.experiment_name,
+            save_dir="./.logs/my-wandb-logs",
         ),
     ]
 

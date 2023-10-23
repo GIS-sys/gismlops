@@ -4,12 +4,8 @@ poetry.lock
 
 # Python
 __pycache__/
+.pytest_cache/
 
 # Program results
-output/**
-
 /data
-/outputs
-/wandb
 /.logs
-/lightning_logs
