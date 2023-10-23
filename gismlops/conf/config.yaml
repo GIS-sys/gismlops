@@ -27,9 +27,9 @@ general:
     seed: 42
 
 train:
-    learning_rate: 1e-3
-    num_warmup_steps: 100
-    num_training_steps: 1000
+    learning_rate: 1e-2
+    num_warmup_steps: 200
+    num_training_steps: 2000
     grad_accum_steps: 4
     accelerator: auto
     #devices:
