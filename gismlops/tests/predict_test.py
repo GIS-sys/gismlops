@@ -9,7 +9,9 @@ from hydra import compose, initialize
 class TestPredictions(unittest.TestCase):
     def testPredict(self):
         with initialize(version_base=None, config_path="../conf"):
-            cfg = compose(config_name="config")
+            cfg = compose(
+                config_name="config", overrides=["artifacts.enable_logger=false"]
+            )
             train(cfg)
             predictions = infer(cfg)
             correct = np.sum(

@@ -13,6 +13,7 @@ artifacts:
         every_n_epochs: 1
     model:
         path: data/model.pth
+    enable_logger: true
     experiment_name: predict_fashion
 
 callbacks:

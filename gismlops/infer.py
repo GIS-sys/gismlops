@@ -22,18 +22,23 @@ def infer(cfg: DictConfig):
     model.load_state_dict(torch.load(cfg.artifacts.model.path))
 
     os.makedirs("./.logs/my-wandb-logs", exist_ok=True)
-    loggers = [
-        pl.loggers.CSVLogger("./.logs/my-csv-logs", name=cfg.artifacts.experiment_name),
-        pl.loggers.MLFlowLogger(
-            experiment_name=cfg.artifacts.experiment_name,
-            tracking_uri="file:./.logs/my-mlflow-logs",
-        ),
-        pl.loggers.WandbLogger(
-            project="mlops-logging-demo",
-            name=cfg.artifacts.experiment_name,
-            save_dir="./.logs/my-wandb-logs",
-        ),
-    ]
+    if cfg.artifacts.enable_logger:
+        loggers = [
+            pl.loggers.CSVLogger(
+                "./.logs/my-csv-logs", name=cfg.artifacts.experiment_name
+            ),
+            pl.loggers.MLFlowLogger(
+                experiment_name=cfg.artifacts.experiment_name,
+                tracking_uri="file:./.logs/my-mlflow-logs",
+            ),
+            pl.loggers.WandbLogger(
+                project="mlops-logging-demo",
+                name=cfg.artifacts.experiment_name,
+                save_dir="./.logs/my-wandb-logs",
+            ),
+        ]
+    else:
+        loggers = []
 
     trainer = pl.Trainer(
         accelerator=cfg.train.accelerator,
