@@ -1,19 +1,52 @@
+hydra:
+  run:
+    dir: ./.logs/hydra/${now:%Y-%m-%d}/${now:%H-%M-%S}
+
+artifacts:
+    checkpoint:
+        use: false
+        dirpath: checkpoints
+        filename: "{epoch:02d}-{val_loss:.4f}"
+        monitor: val_loss
+        save_top_k: 3
+        every_n_train_steps:
+        every_n_epochs: 1
+    model:
+        path: data/model.pth
+    enable_logger: true
+    experiment_name: predict_fashion
+
+callbacks:
+    model_summary:
+        max_depth: 1
+    swa:
+        use: false
+        lrs: 1e-3
+
 data:
-    name: cifar
-    path: /data/to/cifar/dataset
-    test_size: 0.2
+    batch_size: 64
+    dataloader_num_wokers: 4
+    val_size: 0.1
+
+general:
     seed: 42
 
-#model:
-#    name: resnet
-#    layers: 50
-#    output_dim: 128
-#
-#training:
-#    batch_size: 32
-#    epochs: 10
-#    learning_rate: 1e-3
-#    optimizer: adam
-#    gpu_id: 2
-#    grad_accumulate_batches: 4
-#    precision: fp16
+train:
+    learning_rate: 1e-2
+    num_warmup_steps: 200
+    num_training_steps: 2000
+    grad_accum_steps: 4
+    accelerator: auto
+    #devices:
+    #    - 0
+    precision: 16-mixed
+    val_check_interval: 1.0
+    overfit_batches: 0
+    num_sanity_val_steps: 4
+    full_deterministic_mode: true
+    benchmark: false
+    gradient_clip_val: 1.0
+    profiler:
+    log_every_n_steps: 1
+    batch_size_finder: false
+    detect_anomaly: false
