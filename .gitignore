@@ -10,3 +10,5 @@ output/**
 
 /data
 /outputs
+/wandb
+/.logs
