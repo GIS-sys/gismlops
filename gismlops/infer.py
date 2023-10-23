@@ -53,6 +53,7 @@ def infer(cfg: DictConfig):
         logger=loggers,
     )
 
+    trainer.test(model, datamodule=dm)
     answers = np.concatenate(trainer.predict(model, datamodule=dm), axis=1).T
 
     classes = [
