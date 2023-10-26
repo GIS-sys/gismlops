@@ -15,7 +15,7 @@ artifacts:
         path: data/model.pth
     enable_logger: true
     experiment_name: predict_fashion
-    mlflow_web: true
+    mlflow_web: false
 
 callbacks:
     model_summary:
