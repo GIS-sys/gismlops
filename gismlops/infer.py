@@ -5,7 +5,7 @@ import pandas as pd
 import torch
 from gismlops.data import MyDataModule
 from gismlops.model import MyModel
-from gismlops.utils import configure_loggers_and_callbacks
+from gismlops.utils import get_default_trainer
 from omegaconf import DictConfig
 
 
@@ -20,26 +20,9 @@ def infer(cfg: DictConfig):
     model = MyModel(cfg)
     model.load_state_dict(torch.load(cfg.artifacts.model.path))
 
-    loggers, callbacks = configure_loggers_and_callbacks(cfg)
-
-    trainer = pl.Trainer(
-        accelerator=cfg.train.accelerator,
-        precision=cfg.train.precision,
-        max_steps=cfg.train.num_warmup_steps + cfg.train.num_training_steps,
-        accumulate_grad_batches=cfg.train.grad_accum_steps,
-        val_check_interval=cfg.train.val_check_interval,
-        overfit_batches=cfg.train.overfit_batches,
-        num_sanity_val_steps=cfg.train.num_sanity_val_steps,
-        deterministic=cfg.train.full_deterministic_mode,
-        benchmark=cfg.train.benchmark,
-        gradient_clip_val=cfg.train.gradient_clip_val,
-        profiler=cfg.train.profiler,
-        log_every_n_steps=cfg.train.log_every_n_steps,
-        detect_anomaly=cfg.train.detect_anomaly,
-        enable_checkpointing=cfg.artifacts.checkpoint.use,
-        logger=loggers,
-        callbacks=callbacks,
-    )
+    cfg.callbacks.swa.use = False
+    cfg.artifacts.checkpoint.use = False
+    trainer = get_default_trainer(cfg)
 
     trainer.test(model, datamodule=dm)
     answers = np.concatenate(trainer.predict(model, datamodule=dm), axis=1).T
