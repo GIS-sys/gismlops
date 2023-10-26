@@ -56,26 +56,25 @@ class MyModel(pl.LightningModule):
         return np.stack((y, pred.argmax(1)))
 
     @staticmethod
-    def warmup_wrapper(warmup_steps: int, training_steps: int):
-        def warmup(current_step: int):
+    def lr_warmup_wrapper(warmup_steps: int, training_steps: int):
+        def lr_warmup(current_step: int):
             if current_step < warmup_steps:
                 return float(current_step / warmup_steps)
             else:
                 return max(
                     0.0,
                     math.cos(
-                        float(training_steps - current_step)
-                        / float(max(1, training_steps - warmup_steps))
+                        math.pi / 2 * float(current_step - warmup_steps) / training_steps
                     ),
                 )
 
-        return warmup
+        return lr_warmup
 
     def configure_optimizers(self) -> Any:
         optimizer = torch.optim.SGD(self.parameters(), lr=self.cfg.train.learning_rate)
         lr_scheduler = torch.optim.lr_scheduler.LambdaLR(
             optimizer,
-            lr_lambda=type(self).warmup_wrapper(
+            lr_lambda=type(self).lr_warmup_wrapper(
                 warmup_steps=self.cfg.train.num_warmup_steps,
                 training_steps=self.cfg.train.num_training_steps,
             ),
