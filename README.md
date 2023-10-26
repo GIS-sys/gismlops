@@ -40,5 +40,13 @@ Useful dvc commands:
 - to add new files and push them: dvc add data/; dvc commit; dvc push
 - to restore to current hash: dvc pull
 
+Useful nginx commands:
+- to add new nginx config: sudo vim /etc/nginx/sites-available/mlflow.conf
+- to enable this new config: sudo ln -s /etc/nginx/sites-available/mlflow.conf /etc/nginx/sites-enabled/
+- to add alias to your website (if it's not public): echo -e "\n127.0.0.1 gismlops.mlflow\n" | sudo tee -a /etc/hosts
+- to check nginx configuration: sudo nginx -t
+- to reload nginx: sudo systemctl restart nginx
+
 To start working make sure you:
 1) activated conda environment
+2) if using web mlflow logging, make sure to run docker from tracker-service/ and export username and password
