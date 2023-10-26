@@ -5,6 +5,7 @@ import lightning.pytorch as pl
 import torch
 from gismlops.data import MyDataModule
 from gismlops.model import MyModel
+from gismlops.utils import configure_loggers_and_callbacks
 from omegaconf import DictConfig
 
 
@@ -18,32 +19,7 @@ def train(cfg: DictConfig):
     )
     model = MyModel(cfg)
 
-    os.makedirs("./.logs/my-wandb-logs", exist_ok=True)
-    if cfg.artifacts.enable_logger:
-        loggers = [
-            pl.loggers.CSVLogger(
-                "./.logs/my-csv-logs", name=cfg.artifacts.experiment_name
-            ),
-            pl.loggers.MLFlowLogger(
-                experiment_name=cfg.artifacts.experiment_name,
-                tracking_uri="file:./.logs/my-mlflow-logs",
-            ),
-            pl.loggers.WandbLogger(
-                project="mlops-logging-demo",
-                name=cfg.artifacts.experiment_name,
-                save_dir="./.logs/my-wandb-logs",
-            ),
-        ]
-        callbacks = [
-            pl.callbacks.LearningRateMonitor(logging_interval="step"),
-            pl.callbacks.DeviceStatsMonitor(),
-            pl.callbacks.RichModelSummary(
-                max_depth=cfg.callbacks.model_summary.max_depth
-            ),
-        ]
-    else:
-        loggers = []
-        callbacks = []
+    loggers, callbacks = configure_loggers_and_callbacks(cfg)
 
     if cfg.callbacks.swa.use:
         callbacks.append(
