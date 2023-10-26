@@ -34,7 +34,7 @@ general:
 train:
     learning_rate: 1e-2
     num_warmup_steps: 200
-    num_training_steps: 2000
+    num_training_steps: 4000
     grad_accum_steps: 4
     accelerator: auto
     #devices:
@@ -47,6 +47,6 @@ train:
     benchmark: false
     gradient_clip_val: 1.0
     profiler:
-    log_every_n_steps: 1
+    log_every_n_steps: 32
     batch_size_finder: false
     detect_anomaly: false
