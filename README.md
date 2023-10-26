@@ -48,3 +48,4 @@ Useful nginx commands:
 
 To start working make sure you:
 1) activated conda environment
+2) if using web mlflow logging, make sure to run docker from tracker-service/ and export username and password
