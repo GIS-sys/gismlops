@@ -7,11 +7,14 @@ def configure_loggers_and_callbacks(cfg):
     if not cfg.artifacts.enable_logger:
         return [], []
     os.makedirs("./.logs/my-wandb-logs", exist_ok=True)
+    mlflow_tracking_uri = "file:./.logs/my-mlflow-logs"
+    if cfg.artifacts.mlflow_web:
+        mlflow_tracking_uri = "http://mlflow.localhost"
     loggers = [
         pl.loggers.CSVLogger("./.logs/my-csv-logs", name=cfg.artifacts.experiment_name),
         pl.loggers.MLFlowLogger(
             experiment_name=cfg.artifacts.experiment_name,
-            tracking_uri="file:./.logs/my-mlflow-logs",
+            tracking_uri=mlflow_tracking_uri,
         ),
         pl.loggers.WandbLogger(
             project="mlops-logging-demo",
