@@ -40,5 +40,11 @@ Useful dvc commands:
 - to add new files and push them: dvc add data/; dvc commit; dvc push
 - to restore to current hash: dvc pull
 
+Useful nginx commands:
+- to add new nginx config: sudo vim /etc/nginx/sites-available/mlflow.conf
+- to enable this new config: sudo ln -s /etc/nginx/sites-available/mlflow.conf /etc/nginx/sites-enabled/
+- to check nginx configuration: sudo nginx -t
+- to reload nginx: sudo systemctl restart nginx
+
 To start working make sure you:
 1) activated conda environment
