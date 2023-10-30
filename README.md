@@ -50,3 +50,9 @@ Useful nginx commands:
 To start working make sure you:
 1) activated conda environment
 2) if using web mlflow logging, make sure to run docker from tracker-service/ and export username and password
+
+
+## Troubleshooting
+
+- if you get poetry error "Failed to create the collection. Prompt dismissed. .", then use
+```export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring```
