@@ -1,6 +1,7 @@
 import os
 
 import lightning.pytorch as pl
+from gismlops.git_manager import git_version
 
 
 def configure_loggers_and_callbacks(cfg):
@@ -13,6 +14,7 @@ def configure_loggers_and_callbacks(cfg):
         pl.loggers.MLFlowLogger(
             experiment_name=cfg.artifacts.experiment_name,
             tracking_uri=mlflow_tracking_uri,
+            tags={"commit": git_version()},
         ),
         pl.loggers.WandbLogger(
             project="mlops-logging-demo",
