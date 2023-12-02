@@ -26,6 +26,7 @@ Useful poetry comands:
 - to run tests: poetry run pytest
 
 Useful conda commands:
+- to create environment with specific python version: conda create -n "myenv" python=3.3.0
 - to permanently remove auto-base env: conda config --set auto\_activate\_base false
 - to activate base env: conda activate
 - to deactivate base env: conda deactivate
