@@ -13,7 +13,7 @@ class PyModelWrapper(mlflow.pyfunc.PythonModel):
 
 
 def build_server():
-    directory = f"{os.getcwd()}/data/serve/"
+    directory = f"{os.getcwd()}/data/server/"
     try:
         shutil.rmtree(directory)
     except FileNotFoundError:
@@ -21,10 +21,10 @@ def build_server():
     mlflow.pyfunc.save_model(path=directory, python_model=PyModelWrapper())
 
 
-def run_server():
+def start_server():
     pass
 
 
 if __name__ == "__main__":
     build_server()
-    run_server()
+    start_server()
