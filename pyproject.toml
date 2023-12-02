@@ -24,7 +24,9 @@ wandb = "^0.12.21"
 [tool.poetry.scripts]
 train = "gismlops.commands:_train"
 infer = "gismlops.commands:_infer"
-
+build_server = "gismlops.commands:_build_server" # only builds server
+run_server = "gismlops.commands:_run_server"     # builds and starts server
+start_server = "gismlops.commands:_start_server" # only starts server
 
 [[tool.poetry.source]]
 name = "pytorch"

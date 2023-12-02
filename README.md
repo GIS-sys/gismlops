@@ -56,6 +56,12 @@ export MLFLOW_TRACKING_USERNAME=admin
 export MLFLOW_TRACKING_PASSWORD=password
 ```
 
+To serve model:
+1) use ```poetry run build_server``` to create .onnx model and Docker container
+2) use ```poetry run start_server``` to start existing server
+*) or use ```poetry run run_server``` instead of previous two commands
+3) test if everything ok by using ???
+
 
 ## Troubleshooting
 
