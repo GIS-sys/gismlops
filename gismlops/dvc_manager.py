@@ -1,13 +1,14 @@
 from dvc.repo import Repo
 
 
-def dvcSave():
+def dvc_save():
     repo = Repo(".")
     repo.add("data")
+    repo.add(".logs")
     repo.commit()
     repo.push()
 
 
-def dvcLoad():
+def dvc_load():
     repo = Repo(".")
-    repo.pull()
+    repo.pull(force=True)

@@ -1,20 +1,20 @@
 import os
 
 import lightning.pytorch as pl
+from gismlops.git_manager import git_version
 
 
 def configure_loggers_and_callbacks(cfg):
     if not cfg.artifacts.enable_logger:
         return [], []
     os.makedirs("./.logs/my-wandb-logs", exist_ok=True)
-    mlflow_tracking_uri = "file:./.logs/my-mlflow-logs"
-    if cfg.artifacts.mlflow_web:
-        mlflow_tracking_uri = "http://gismlops.mlflow"
+    mlflow_tracking_uri = cfg.artifacts.mlflow_tracking_uri
     loggers = [
         pl.loggers.CSVLogger("./.logs/my-csv-logs", name=cfg.artifacts.experiment_name),
         pl.loggers.MLFlowLogger(
             experiment_name=cfg.artifacts.experiment_name,
             tracking_uri=mlflow_tracking_uri,
+            tags={"commit": git_version()},
         ),
         pl.loggers.WandbLogger(
             project="mlops-logging-demo",

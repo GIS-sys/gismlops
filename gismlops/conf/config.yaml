@@ -15,7 +15,8 @@ artifacts:
         path: data/model.pth
     enable_logger: true
     experiment_name: predict_fashion
-    mlflow_web: false
+    mlflow_tracking_uri: "file:./.logs/my-mlflow-logs"
+    #mlflow_tracking_uri: "http://gismlops.mlflow"
 
 callbacks:
     model_summary:

@@ -48,6 +48,13 @@ Useful nginx commands:
 - to check nginx configuration: sudo nginx -t
 - to reload nginx: sudo systemctl restart nginx
 
+Useful mlflow commands:
+- to allow python code to access mlflow-server do not forget to export variables with username and password like that:
+```
+export MLFLOW_TRACKING_USERNAME=admin
+export MLFLOW_TRACKING_PASSWORD=password
+```
+
 To start working make sure you:
 1) activated conda environment
 2) if using web mlflow logging, make sure to run docker from tracker-service/ and export username and password

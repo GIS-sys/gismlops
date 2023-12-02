@@ -1,16 +1,17 @@
-from gismlops.dvc_manager import dvcLoad, dvcSave
+from gismlops.dvc_manager import dvc_load, dvc_save
 from gismlops.infer import infer
 from gismlops.train import train
 
 
 def _infer():
-    dvcLoad()
+    dvc_load()
     infer()
+    dvc_save()
 
 
 def _train():
-    dvcSave()
     train()
+    dvc_save()
 
 
 if __name__ == "__main__":
