@@ -21,8 +21,6 @@ def build_server():
         shutil.rmtree(directory_out)
     except FileNotFoundError:
         pass
-    # mlflow.pyfunc.save_model(path=directory_out, python_model=PyModelWrapper())
-    # onnx_model = mlflow.onnx.load_model(model_path)
     onnx_model = onnx.load(model_path)
     mlflow.onnx.save_model(onnx_model, directory_out)
 

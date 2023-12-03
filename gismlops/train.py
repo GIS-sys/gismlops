@@ -27,7 +27,8 @@ def train(cfg: DictConfig):
     torch.save(
         model.state_dict(), cfg.artifacts.model.path + cfg.artifacts.model.name + ".pth"
     )
-    dummy_input = next(iter(dm.val_dataloader()))[0]
+    dummy_input_batch = next(iter(dm.val_dataloader()))[0]
+    dummy_input = torch.unsqueeze(dummy_input_batch[0], 0)
     torch.onnx.export(
         model,
         dummy_input,

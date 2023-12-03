@@ -4,7 +4,19 @@ Egorov Gordei, MIPT, Б05-027
 
 Predicting clothing types, training on FashionMNIST dataset
 
-## Requirements
+# For teachers
+
+1) train: ```poetry run train```
+
+2) infer: ```poetry run infer```
+
+3) test: ```poetry run pytest```
+
+4) run server: ```./run_server.sh```
+
+5) test server by running ```python server/test.py```
+
+# Requirements
 
 1) install [miniconda](https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html)
 
@@ -16,7 +28,7 @@ Predicting clothing types, training on FashionMNIST dataset
 
 5) install dependencies using poetry
 
-# dev
+# For development
 
 Useful poetry comands:
 - to build: poetry build
