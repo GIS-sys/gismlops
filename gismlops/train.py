@@ -29,7 +29,10 @@ def train(cfg: DictConfig):
     )
     dummy_input = next(iter(dm.val_dataloader()))[0]
     torch.onnx.export(
-        model, dummy_input, cfg.artifacts.model.path + cfg.artifacts.model.name + ".onnx"
+        model,
+        dummy_input,
+        cfg.artifacts.model.path + cfg.artifacts.model.name + ".onnx",
+        export_params=True,
     )
 
 
