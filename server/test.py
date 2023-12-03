@@ -13,11 +13,11 @@ def predict(array):
     return res
 
 
-def create_test(shape):
+def create_random_test(shape):
     N = shape[0]
     if len(shape) == 1:
         return [0.1 for _ in range(N)]
-    return [create_test(shape[1:]) for _ in range(N)]
+    return [create_random_test(shape[1:]) for _ in range(N)]
 
 
 CLASSES = [
@@ -54,6 +54,6 @@ def analyze_results(raw):
         print(f"Prediction: {CLASSES[answer_index]}")
 
 
-test = create_test([1, 1, 28, 28])
+test = create_random_test([1, 1, 28, 28])
 raw = predict(test).text
 analyze_results(raw)
