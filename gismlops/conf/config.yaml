@@ -12,7 +12,8 @@ artifacts:
         every_n_train_steps:
         every_n_epochs: 1
     model:
-        path: data/model.pth
+        path: data/
+        name: model
     enable_logger: true
     experiment_name: predict_fashion
     mlflow_tracking_uri: "file:./.logs/my-mlflow-logs"

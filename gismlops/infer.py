@@ -18,7 +18,9 @@ def infer(cfg: DictConfig):
         val_size=cfg.data.val_size,
     )
     model = MyModel(cfg)
-    model.load_state_dict(torch.load(cfg.artifacts.model.path))
+    model.load_state_dict(
+        torch.load(cfg.artifacts.model.path + cfg.artifacts.model.name + ".pth")
+    )
 
     cfg.callbacks.swa.use = False
     cfg.artifacts.checkpoint.use = False

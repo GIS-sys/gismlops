@@ -4,7 +4,19 @@ Egorov Gordei, MIPT, Б05-027
 
 Predicting clothing types, training on FashionMNIST dataset
 
-## Requirements
+# For teachers
+
+1) train: ```poetry run train```
+
+2) infer: ```poetry run infer```
+
+3) test: ```poetry run pytest```
+
+4) run server: ```./run_server.sh```
+
+5) test server by running ```python server/test.py```
+
+# Requirements
 
 1) install [miniconda](https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html)
 
@@ -16,7 +28,7 @@ Predicting clothing types, training on FashionMNIST dataset
 
 5) install dependencies using poetry
 
-# dev
+# For development
 
 Useful poetry comands:
 - to build: poetry build
@@ -48,16 +60,22 @@ Useful nginx commands:
 - to check nginx configuration: sudo nginx -t
 - to reload nginx: sudo systemctl restart nginx
 
-Useful mlflow commands:
-- to allow python code to access mlflow-server do not forget to export variables with username and password like that:
+To start working make sure you:
+1) activated conda environment
+2) if using web mlflow logging, make sure to run docker from tracker-service/ and export username and password:
 ```
 export MLFLOW_TRACKING_USERNAME=admin
 export MLFLOW_TRACKING_PASSWORD=password
 ```
 
-To start working make sure you:
-1) activated conda environment
-2) if using web mlflow logging, make sure to run docker from tracker-service/ and export username and password
+To serve model:
+1) use ```poetry run build_server``` to create .onnx model and Docker container
+2) use ```poetry run start_server``` to start existing server
+*) or use ```poetry run run_server``` instead of previous two commands
+3) test if everything ok by using:
+```
+curl -X POST -H "Content-Type:application/json" --data '{"dataframe_records": [{"a":5, "b":3}]}' http://localhost:8080/invocations
+```
 
 
 ## Troubleshooting
