@@ -1,5 +1,6 @@
 import os
 import shutil
+import subprocess
 
 import mlflow.pyfunc
 
@@ -19,10 +20,11 @@ def build_server():
     except FileNotFoundError:
         pass
     mlflow.pyfunc.save_model(path=directory, python_model=PyModelWrapper())
+    subprocess.call(["sh", "./gismlops/server/build.sh"])
 
 
 def start_server():
-    pass
+    subprocess.call(["sh", "./gismlops/server/start.sh"])
 
 
 if __name__ == "__main__":

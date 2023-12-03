@@ -1,6 +1,6 @@
 from gismlops.dvc_manager import dvc_load, dvc_save
 from gismlops.infer import infer
-from gismlops.server import build_server, start_server
+from gismlops.server.server import build_server, start_server
 from gismlops.train import train
 
 
