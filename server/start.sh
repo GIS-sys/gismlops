@@ -1,2 +1,2 @@
-cd gismlops/server
+cd server/
 docker compose up --build

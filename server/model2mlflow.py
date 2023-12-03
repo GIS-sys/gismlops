@@ -1,12 +1,12 @@
 import os
 import shutil
-import subprocess
 
 import mlflow.pyfunc
 
 
 class PyModelWrapper(mlflow.pyfunc.PythonModel):
     def load_context(self, context):
+        print(context)
         pass
 
     def predict(self, context, model_input):
@@ -20,13 +20,7 @@ def build_server():
     except FileNotFoundError:
         pass
     mlflow.pyfunc.save_model(path=directory, python_model=PyModelWrapper())
-    subprocess.call(["sh", "./gismlops/server/build.sh"])
-
-
-def start_server():
-    subprocess.call(["sh", "./gismlops/server/start.sh"])
 
 
 if __name__ == "__main__":
     build_server()
-    start_server()

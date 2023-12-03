@@ -1,6 +1,5 @@
 from gismlops.dvc_manager import dvc_load, dvc_save
 from gismlops.infer import infer
-from gismlops.server.server import build_server, start_server
 from gismlops.train import train
 
 
@@ -13,19 +12,6 @@ def _infer():
 def _train():
     train()
     dvc_save()
-
-
-def _build_server():
-    build_server()
-
-
-def _start_server():
-    start_server()
-
-
-def _run_server():
-    build_server()
-    start_server()
 
 
 if __name__ == "__main__":
