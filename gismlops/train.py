@@ -24,7 +24,13 @@ def train(cfg: DictConfig):
         tuner.scale_batch_size(model, datamodule=dm, mode="power")
 
     trainer.fit(model, datamodule=dm)
-    torch.save(model.state_dict(), cfg.artifacts.model.path)
+    torch.save(
+        model.state_dict(), cfg.artifacts.model.path + cfg.artifacts.model.name + ".pth"
+    )
+    dummy_input = next(iter(dm.val_dataloader()))[0]
+    torch.onnx.export(
+        model, dummy_input, cfg.artifacts.model.path + cfg.artifacts.model.name + ".onnx"
+    )
 
 
 if __name__ == "__main__":
