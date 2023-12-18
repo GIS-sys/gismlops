@@ -75,13 +75,10 @@ export MLFLOW_TRACKING_PASSWORD=password
 ```
 
 To serve model:
-1) use ```poetry run build_server``` to create .onnx model and Docker container
-2) use ```poetry run start_server``` to start existing server
-*) or use ```poetry run run_server``` instead of previous two commands
-3) test if everything ok by using:
-```
-curl -X POST -H "Content-Type:application/json" --data '{"dataframe_records": [{"a":5, "b":3}]}' http://localhost:8080/invocations
-```
+1) use ```server/build_server.sh``` to create .onnx model and Docker container
+2) use ```server/start_server.sh``` to start existing server
+*) or use ```./run_server.sh``` instead of previous two commands
+3) test if everything ok by using ```poetry run server/test.py```
 
 To serve model with triton: go to [triton/README.md](triton/README.md) for further info
 

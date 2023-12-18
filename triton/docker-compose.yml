@@ -4,7 +4,7 @@ services:
     triton_clothing:
         command: ["--model-repository=/models", "--log-info=1"]
         build: .
-        shm_size: '64gb'
+        shm_size: '4gb'
         restart: unless-stopped
         ports:
           - 8500:8000

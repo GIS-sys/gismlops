@@ -12,13 +12,13 @@
 
 # Analisys
 
-System:
+## System:
 - Ubuntu 20.04.6 LTS
 - CPU: 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
 - vCPU: 8
-- RAM: 8GB + 6GB of swap memory
+- RAM: 8GB + 6GB of swap memory, docker ran with shm\_size=4GB
 
-Task:
+## Task:
 Given the 28x28 black and white image of cloth predict one of 10 possible categories:
 - T-shirt/top
 - Trouser
@@ -31,17 +31,39 @@ Given the 28x28 black and white image of cloth predict one of 10 possible catego
 - Bag
 - Ankle boot
 
+## Structure:
 model_repository
 └── onnx-clothing
     ├── 1
     │   └── model.onnx
     └── config.pbtxt
 
-Before optimization:
-???
+## Before optimization:
 
-After optimization:
-???
+### Config:
 
-Explanation:
-???
+max batch size: 8
+
+...
+
+### Results:
+
+Threads | Batchsize | Throughput | Latency | Latency p99
+--- | --- | --- | --- | ---
+... | ... | ... | ... | ...
+
+## After optimization:
+
+### Config:
+
+...
+
+### Results:
+
+Threads | Batchsize | Throughput | Latency | Latency p99
+--- | --- | --- | --- | ---
+... | ... | ... | ... | ...
+
+## Explanation:
+
+...
