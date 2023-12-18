@@ -1,8 +1,8 @@
 import unittest
 
 import numpy as np
+from gismlops.dvc_manager import dvc_load
 from gismlops.infer import infer
-from gismlops.train import train
 from hydra import compose, initialize
 
 
@@ -12,7 +12,7 @@ class TestPredictions(unittest.TestCase):
             cfg = compose(
                 config_name="config", overrides=["artifacts.enable_logger=false"]
             )
-            train(cfg)
+            dvc_load()
             predictions = infer(cfg)
             correct = np.sum(
                 predictions["target_index"] == predictions["predicted_index"]
