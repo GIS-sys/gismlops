@@ -53,6 +53,7 @@ inference groups: 1 model
 ### Results:
 
 Batchsize | Throughput | Latency | Time in queue | Time in infer
+--- | --- | --- | --- | ---
 1024 | 11131.3 | 717 | 264 | 51
 
 ## Process of selection:
@@ -62,6 +63,7 @@ My model is very small, so it is hard to test it's limits without running into l
 Therefore, the first thing I wanted to do is to test the influence of batch size on Throughput and Latency. Using perf\_analyzer I tried sending with concurrency 8 different data (28x28 images):
 
 Batchsize | Throughput | Latency | Time in queue | Time in infer
+--- | --- | --- | --- | ---
 1 | 11671.9 | 684 | 272 | 49
 4 | 10716.1 | 746 | 286 | 48
 16 | 10654.6 | 749 | 272 | 47
@@ -74,6 +76,7 @@ Batchsize | Throughput | Latency | Time in queue | Time in infer
 The best batch size seems to be around 1024. However, at this point it is obvious that something is wrong - batch size does not have big influence. Let's try to test with different max batch arguments:
 
 Maxbatchsize | Batchsize | Throughput | Latency | Time in queue | Time in infer
+--- | --- | --- | --- | --- | ---
 8 | 1 | 14215.8 | 561 | 85 | 52
 128 | 1 | 12677.3 | 630 | 94 | 63
 8 | 64 | 19052.9 | 419 | 74 | 44
@@ -84,6 +87,7 @@ Maxbatchsize | Batchsize | Throughput | Latency | Time in queue | Time in infer
 
 At this point I start getting messages from perf\_analyzer that it "is not able to keep up with the desired load. The results may not be accurate", so I assume that batch size of 1024 is good enough, and maximum batch size should be bigger than one. To determine best max batch size I tried to look at other parameters, such as "p99 latency" and "latency standard deviation"
 Maxbatchsize | p99 latency | Latency standard deviation
+--- | --- | ---
 8 | 1230 | 325
 128 | 1100 | 272
 1024 | 974 | 291
@@ -93,6 +97,7 @@ However results vary very much from test to test, so it is hard to really unders
 Now I will try to tweak dynamic batching and instance groups:
 
 Dynamic batching delay | Instance groups | Throughput | Latency | Time in queue | Time in infer
+--- | --- | --- | --- | --- | ---
 no dynamic | 1 | 11422.6 | 699 | 253 | 49
 10 | 1 | 17987.3 | 444 | 107 | 45
 100 | 1 | 17146.4 | 465 | 136 | 50
@@ -101,6 +106,7 @@ no dynamic | 1 | 11422.6 | 699 | 253 | 49
 So it is obviously better to have dynamic batching, but due to the fact that model is very small we do not need big batches - model is running fast anyway. Now, for the instance groups:
 
 Dynamic batching delay | Instance groups | Throughput | Latency | Time in queue | Time in infer
+--- | --- | --- | --- | --- | ---
 10 | 1 | 17987.3 | 444 | 107 | 45
 10 | 2 | 9711.58 | 822 | 195 | 120
 10 | 4 | 6508.62 | 1228 | 175 | 241
@@ -120,6 +126,7 @@ inference groups: 1 model
 ### Results:
 
 Batchsize | Throughput | Latency | Time in queue | Time in infer
+--- | --- | --- | --- | ---
 1024 | 17372.3 | 459 | 107 | 47
 
 ## Conclusion
