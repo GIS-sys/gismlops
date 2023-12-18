@@ -32,11 +32,13 @@ Given the 28x28 black and white image of cloth predict one of 10 possible catego
 - Ankle boot
 
 ## Structure:
+```bash
 model_repository
 └── onnx-clothing
     ├── 1
     │   └── model.onnx
     └── config.pbtxt
+```
 
 ## Before optimization:
 
