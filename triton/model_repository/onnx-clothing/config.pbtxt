@@ -1,0 +1,28 @@
+name: "onnx-clothing"
+platform: "onnxruntime_onnx"
+max_batch_size: 8
+
+input [
+    {
+        name: "inputs"
+        data_type: TYPE_FP32
+        dims: [ 1, 28, 28 ]
+    }
+]
+
+output [
+    {
+        name: "predictions"
+        data_type: TYPE_FP32
+        dims: [ 10 ]
+    }
+]
+
+instance_group [
+    {
+        count: 1
+        kind: KIND_CPU
+    }
+]
+
+dynamic_batching { }

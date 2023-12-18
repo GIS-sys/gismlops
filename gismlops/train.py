@@ -29,11 +29,18 @@ def train(cfg: DictConfig):
     )
     dummy_input_batch = next(iter(dm.val_dataloader()))[0]
     dummy_input = torch.unsqueeze(dummy_input_batch[0], 0)
+    print(dummy_input.shape)
     torch.onnx.export(
         model,
         dummy_input,
         cfg.artifacts.model.path + cfg.artifacts.model.name + ".onnx",
         export_params=True,
+        input_names=["inputs"],
+        output_names=["predictions"],
+        dynamic_axes={
+            "inputs": {0: "BATCH_SIZE"},
+            "predictions": {0: "BATCH_SIZE"},
+        },
     )
 
 

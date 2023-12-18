@@ -5,15 +5,6 @@ import mlflow.pyfunc
 import onnx
 
 
-class PyModelWrapper(mlflow.pyfunc.PythonModel):
-    def load_context(self, context):
-        print(context)
-        pass
-
-    def predict(self, context, model_input):
-        return model_input["a"] + model_input["b"]
-
-
 def build_server():
     model_path = f"{os.getcwd()}/data/model.onnx"
     directory_out = f"{os.getcwd()}/data/server/"

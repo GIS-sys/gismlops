@@ -16,6 +16,8 @@ Predicting clothing types, training on FashionMNIST dataset
 
 5) test server by running ```python server/test.py```
 
+6) triton info in triton/ folder (including it's own readme)
+
 # Requirements
 
 1) install [miniconda](https://docs.conda.io/projects/miniconda/en/latest/miniconda-install.html)
@@ -60,6 +62,10 @@ Useful nginx commands:
 - to check nginx configuration: sudo nginx -t
 - to reload nginx: sudo systemctl restart nginx
 
+Useful perf_analyzer commands:
+- to launch perf_analyzer (from inside of triton/ folder): docker run -it --rm --net=host nvcr.io/nvidia/tritonserver:23.04-py3-sdk
+- ???
+
 To start working make sure you:
 1) activated conda environment
 2) if using web mlflow logging, make sure to run docker from tracker-service/ and export username and password:
@@ -77,6 +83,7 @@ To serve model:
 curl -X POST -H "Content-Type:application/json" --data '{"dataframe_records": [{"a":5, "b":3}]}' http://localhost:8080/invocations
 ```
 
+To serve model with triton: go to [triton/README.md](triton/README.md) for further info
 
 ## Troubleshooting
 
