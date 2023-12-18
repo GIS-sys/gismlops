@@ -16,7 +16,7 @@ Predicting clothing types, training on FashionMNIST dataset
 
 5) test server by running ```python server/test.py```
 
-6) triton info in triton/ folder (including it's own readme)
+6) triton info in triton/ folder (including readme with optimization info)
 
 # Requirements
 
@@ -64,7 +64,7 @@ Useful nginx commands:
 
 Useful perf_analyzer commands:
 - to launch perf_analyzer (from inside of triton/ folder): docker run -it --rm --net=host nvcr.io/nvidia/tritonserver:23.04-py3-sdk
-- ???
+- to test concurrency: perf_analyzer -m onnx-clothing -u localhost:8500 --concurrency-range 1:5 --shape inputs:1,1,28,28 --shape predictions:1,10
 
 To start working make sure you:
 1) activated conda environment
