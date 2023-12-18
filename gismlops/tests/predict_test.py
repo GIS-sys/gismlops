@@ -2,7 +2,6 @@ import unittest
 
 import numpy as np
 from gismlops.infer import infer
-from gismlops.train import train
 from hydra import compose, initialize
 
 
@@ -12,7 +11,6 @@ class TestPredictions(unittest.TestCase):
             cfg = compose(
                 config_name="config", overrides=["artifacts.enable_logger=false"]
             )
-            train(cfg)
             predictions = infer(cfg)
             correct = np.sum(
                 predictions["target_index"] == predictions["predicted_index"]
