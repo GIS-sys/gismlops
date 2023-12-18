@@ -29,7 +29,6 @@ def train(cfg: DictConfig):
     )
     dummy_input_batch = next(iter(dm.val_dataloader()))[0]
     dummy_input = torch.unsqueeze(dummy_input_batch[0], 0)
-    print(dummy_input.shape)
     torch.onnx.export(
         model,
         dummy_input,
