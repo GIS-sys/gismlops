@@ -34,6 +34,12 @@ def train(cfg: DictConfig):
         dummy_input,
         cfg.artifacts.model.path + cfg.artifacts.model.name + ".onnx",
         export_params=True,
+        input_names=["inputs"],
+        output_names=["predictions"],
+        dynamic_axes={
+            "inputs": {0: "BATCH_SIZE"},
+            "predictions": {0: "BATCH_SIZE"},
+        },
     )
 
 

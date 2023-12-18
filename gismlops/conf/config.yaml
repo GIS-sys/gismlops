@@ -27,7 +27,7 @@ callbacks:
         lrs: 1e-3
 
 data:
-    batch_size: 64
+    batch_size: 256
     dataloader_num_wokers: 4
     val_size: 0.1
 
@@ -37,7 +37,7 @@ general:
 train:
     learning_rate: 1e-2
     num_warmup_steps: 200
-    num_training_steps: 2000
+    num_training_steps: 4000
     grad_accum_steps: 4
     accelerator: auto
     #devices:
