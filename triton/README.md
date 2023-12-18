@@ -8,7 +8,7 @@
 
 4) run perf\_analyzer via docker if you want to analyze performance
 
-5) ???
+5) run main.py (while server is running) to make several requests and test inference
 
 # Analisys
 
