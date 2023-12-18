@@ -1,0 +1,12 @@
+docker run -it --rm --net=host nvcr.io/nvidia/tritonserver:23.04-py3-sdk
+
+perf_analyzer -m onnx-clothing -u localhost:8500 --concurrency-range 8 --shape inputs:1024,1,28,28 --shape predictions:1024,10
+
+
+docker-compose up --build
+
+
+vim model_repository/onnx-clothing/config.pbtxt
+
+
+vim ~/mipt/ml_all/mlops/project/triton/README.md

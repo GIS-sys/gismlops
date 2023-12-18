@@ -1,6 +1,6 @@
 name: "onnx-clothing"
 platform: "onnxruntime_onnx"
-max_batch_size: 1
+max_batch_size: 1024
 
 input [
     {
@@ -25,4 +25,4 @@ instance_group [
     }
 ]
 
-dynamic_batching { }
+dynamic_batching { max_queue_delay_microseconds: 10 }
