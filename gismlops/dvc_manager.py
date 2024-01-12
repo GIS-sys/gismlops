@@ -10,4 +10,4 @@ def dvc_save():
 
 def dvc_load():
     repo = Repo(".")
-    repo.pull(force=True)
+    repo.pull(force=True, allow_missing=True)
