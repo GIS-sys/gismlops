@@ -27,18 +27,7 @@ jobs:
       - name: Install the project dependencies
         run: poetry install
       - uses: iterative/setup-dvc@v1
-      - name: Configure dvc
+      - name: Run automated tests
         env:
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
-        #env:
-        #  GDRIVE_CREDENTIALS_CLIENT: ${{ secrets.GDRIVE_CREDENTIALS_CLIENT }}
-        #  GDRIVE_CREDENTIALS_SECRET: ${{ secrets.GDRIVE_CREDENTIALS_SECRET }}
-        run: |
-          # echo $GDRIVE_CREDENTIALS_CLIENT $GDRIVE_CREDENTIALS_SECRET
-          # dvc remote modify storage gdrive_client_id '$GDRIVE_CREDENTIALS_CLIENT'
-          # dvc remote modify storage gdrive_client_secret '$GDRIVE_CREDENTIALS_SECRET'
-          dvc fetch
-      - name: Run automated tests
-        run: |
-          dvc pull --force
-          poetry run pytest -vs
+        run: poetry run pytest -vs
