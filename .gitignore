@@ -8,5 +8,4 @@ __pycache__/
 
 # Program results
 /data
-/.logs
 /logs
