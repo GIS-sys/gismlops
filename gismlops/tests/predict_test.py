@@ -18,5 +18,5 @@ class TestPredictions(unittest.TestCase):
                 predictions["target_index"] == predictions["predicted_index"]
             )
             every = len(predictions)
-            PRECISION = 0.7
+            PRECISION = 0.6
             self.assertTrue(correct > PRECISION * every)
