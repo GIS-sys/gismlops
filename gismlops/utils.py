@@ -7,10 +7,10 @@ from gismlops.git_manager import git_version
 def configure_loggers_and_callbacks(cfg):
     if not cfg.artifacts.enable_logger:
         return [], []
-    os.makedirs("./.logs/my-wandb-logs", exist_ok=True)
+    os.makedirs("./logs/my-wandb-logs", exist_ok=True)
     mlflow_tracking_uri = cfg.artifacts.mlflow_tracking_uri
     loggers = [
-        pl.loggers.CSVLogger("./.logs/my-csv-logs", name=cfg.artifacts.experiment_name),
+        pl.loggers.CSVLogger("./logs/my-csv-logs", name=cfg.artifacts.experiment_name),
         pl.loggers.MLFlowLogger(
             experiment_name=cfg.artifacts.experiment_name,
             tracking_uri=mlflow_tracking_uri,
@@ -19,7 +19,7 @@ def configure_loggers_and_callbacks(cfg):
         pl.loggers.WandbLogger(
             project="mlops-logging-demo",
             name=cfg.artifacts.experiment_name,
-            save_dir="./.logs/my-wandb-logs",
+            save_dir="./logs/my-wandb-logs",
         ),
     ]
     callbacks = [
