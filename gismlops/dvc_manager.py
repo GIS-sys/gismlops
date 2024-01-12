@@ -1,4 +1,3 @@
-from dvc.fs import DVCFileSystem
 from dvc.repo import Repo
 
 
@@ -11,6 +10,5 @@ def dvc_save():
 
 
 def dvc_load():
-    fs = DVCFileSystem()
-    fs.get("data", "data", recursive=True)
-
+    repo = Repo(".")
+    repo.pull(force=True)
