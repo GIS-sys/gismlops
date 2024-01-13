@@ -6,6 +6,8 @@ Predicting clothing types, training on FashionMNIST dataset
 
 # For teachers
 
+!!! LAST CHANGE WAS 13.01.2023 - FIXED CI TESTS (and dvc pull in general) !!!
+
 1) train: ```poetry run train```
 
 2) infer: ```poetry run infer```

@@ -26,5 +26,8 @@ jobs:
           key: venv-${{ hashFiles('poetry.lock') }}
       - name: Install the project dependencies
         run: poetry install
+      - uses: iterative/setup-dvc@v1
       - name: Run automated tests
-        run: poetry run pytest -v
+        env:
+          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+        run: poetry run pytest -vs
