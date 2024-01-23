@@ -120,7 +120,19 @@ research description is in triton/README.md
 
 # Codestyle explanation
 
-???
+- Readme exists
+- No variables are defined at the top level
+- Only one file (commands.py) has more than 1 function under \_\_main\_\_. It has 2 calls, \train() and \_infer(), I really felt like not creating separate function for that
+- warnings are not suppressed
+- real data from mnist-like dataset
+- imports are made global-style
+- did not save binaries to git
+- has 2 files
+- "gismlops" is snake\_case
+- used .gitignore for python as core
+- have run pre-commit
+- files are named in snake\_case
+- repository is public
 
 
 
