@@ -12,13 +12,13 @@ hw3 commit: 8c62fa06464580d0795bd91fe65fe9383172241e
 
 ### poetry
 
-poetry lock; poetry install;
+`poetry lock; poetry install;`
 
 works in [this action from last month](https://github.com/GIS-sys/gismlops/actions/runs/7251817894/job/20437854633) and [this action from hw1](https://github.com/GIS-sys/gismlops/actions/runs/6383320462)
 
 ### pre-commit
 
-conda install pre-commit; pre-commit install; git commit -m "pre-commit test"
+`conda install pre-commit; pre-commit install; git commit -m "pre-commit test"`
 
 works in [this action from last month](https://github.com/GIS-sys/gismlops/actions/runs/7251817901/job/19754958960) and [this action from hw1](https://github.com/GIS-sys/gismlops/actions/runs/6383320460)
 
@@ -35,7 +35,7 @@ in this final version (as well as in [hw1 commit](https://github.com/GIS-sys/gis
 
 ### dvc
 
-dvc init; dvc remote add -d storage gdrive://1Z3JfbS00SLrhHPVh7igikSy4Dbbug-z; dvc add data/; dvc commit; dvc push; dvc pull;
+`dvc init; dvc remote add -d storage gdrive://1Z3JfbS00SLrhHPVh7igikSy4Dbbug-z; dvc add data/; dvc commit; dvc push; dvc pull;`
 
 works in current version, but I admit that it didn't work in hw3 version, and wasn't present in hw2 version
 
@@ -45,11 +45,11 @@ used in train, infer (hydra.main) and test (initialize and compose), both in hw2
 
 ### logging
 
-cd tracker-service/; docker-compose up;
+`cd tracker-service/; docker-compose up;`
 
 log in at http://gismlops.mlflow using admin/password
 
-export MLFLOW_TRACKING_USERNAME=admin; export MLFLOW_TRACKING_PASSWORD=password; poetry run train;
+`export MLFLOW_TRACKING_USERNAME=admin; export MLFLOW_TRACKING_PASSWORD=password; poetry run train;`
 
 in utils I use `tags={"commit": git\_version()}`, and log hyperparameters and lr-SGD, train\_loss, val\_loss\_epoch, val\_loss\_step
 
@@ -71,11 +71,11 @@ export to .onnx is done in train, inference: ./run_server.sh; python server/test
 
 ### triton
 
-cp data/model.onnx triton/model_repository/onnx-clothing/1/; cd triton/; docker-compose up --build;
+`cp data/model.onnx triton/model_repository/onnx-clothing/1/; cd triton/; docker-compose up --build;`
 
-docker run -it --rm --net=host nvcr.io/nvidia/tritonserver:23.04-py3-sdk; perf_analyzer -m onnx-clothing -u localhost:8500 --concurrency-range 1:5 --shape inputs:1,1,28,28 --shape predictions:1,10;
+`docker run -it --rm --net=host nvcr.io/nvidia/tritonserver:23.04-py3-sdk; perf_analyzer -m onnx-clothing -u localhost:8500 --concurrency-range 1:5 --shape inputs:1,1,28,28 --shape predictions:1,10;`
 
-python triton/client.py;
+`python triton/client.py;`
 
 but I admit that I can't find the examples in dvc storage, because I deleted it when I tried to understand the error
 
