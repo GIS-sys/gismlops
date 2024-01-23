@@ -89,4 +89,3 @@ in this final version (as well as in [hw1 commit](https://github.com/GIS-sys/gis
 - правильно составленный markdown отчет: 10 баллов
 - доп-задание на tensorrt: 10 баллов
 - допзадание на арифметическую интенсивность: 10 баллов
-
