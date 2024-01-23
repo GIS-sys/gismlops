@@ -45,11 +45,17 @@ used in train, infer (hydra.main) and test (initialize and compose), both in hw2
 
 ### logging
 
-in utils I use `tags={"commit": git\_version()}`, ???
+cd tracker-service/; docker-compose up;
+
+log in at http://gismlops.mlflow using admin/password
+
+export MLFLOW_TRACKING_USERNAME=admin; export MLFLOW_TRACKING_PASSWORD=password; poetry run train;
+
+in utils I use `tags={"commit": git\_version()}`, and log hyperparameters and lr-SGD, train\_loss, val\_loss\_epoch, val\_loss\_step
 
 ### inference
 
-???
+export to .onnx is done in train, inference: ./run_server.sh; python server/test.py;
 
 ### codestyle
 
