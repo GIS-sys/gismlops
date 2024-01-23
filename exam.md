@@ -1,18 +1,29 @@
 # Explanation
 
+## [Pull request from latest version to version before homework checking](???)
+
 ## HW1
 
 ### poetry
 
-???
+poetry lock; poetry install;
+
+works in [this action from last month](https://github.com/GIS-sys/gismlops/actions/runs/7251817894/job/20437854633) and [this action from hw1](https://github.com/GIS-sys/gismlops/actions/runs/6383320462)
 
 ### pre-commit
 
 ???
 
+works in [this action from last month](https://github.com/GIS-sys/gismlops/actions/runs/7251817901/job/19754958960) and [this action from hw1](https://github.com/GIS-sys/gismlops/actions/runs/6383320460)
+
 ### codestyle
 
-???
+in this final version (as well as in [hw1 commit](https://github.com/GIS-sys/gismlops/pull/3/files#diff-6df7f67034c615d6e99806772a59741a66f7d7a0def25f8970d3e00aab4a4500)):
+
+- train and infer are separate files
+- single letter variables are not used
+- "gismlops" is a camelCase, although in the very first message from 08.10.23 the snake\_case was required
+- all scripts are run from "\_\_main\_\_" function
 
 ## HW2
 
@@ -34,7 +45,13 @@
 
 ### codestyle
 
-??? 
+1. as of the final version, the only commented code is in ./gismlops/conf/config.yaml (for cuda devices option)
+2. as of the final version, no directory is empty (except for triton/model\_repository/onnx-clothing/1/)
+3. ???
+4. ???
+5. ???
+6. ???
+7. there are no binary files in github, and the only folder being pushed in dvc is data/ (also .logs, but not automatically)
 
 ## HW3
 
