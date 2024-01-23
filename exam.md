@@ -71,7 +71,13 @@ export to .onnx is done in train, inference: ./run_server.sh; python server/test
 
 ### triton
 
-???
+cp data/model.onnx triton/model_repository/onnx-clothing/1/; cd triton/; docker-compose up --build;
+
+docker run -it --rm --net=host nvcr.io/nvidia/tritonserver:23.04-py3-sdk; perf_analyzer -m onnx-clothing -u localhost:8500 --concurrency-range 1:5 --shape inputs:1,1,28,28 --shape predictions:1,10;
+
+python triton/client.py;
+
+but I admit that I can't find the examples in dvc storage, because I deleted it when I tried to understand the error
 
 ### .md
 
