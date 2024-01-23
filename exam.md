@@ -1,6 +1,12 @@
 # Explanation
 
-## [Pull request from latest version to version before homework checking](???)
+## Important links
+
+hw1 commit: 37c31df0dbffec876ecce231ede22256d369a7e0
+
+hw2 commit: e7cdd42497847948ec4fccf6fe247a57f2681964
+
+hw3 commit: 8c62fa06464580d0795bd91fe65fe9383172241e
 
 ## HW1
 
@@ -12,7 +18,7 @@ works in [this action from last month](https://github.com/GIS-sys/gismlops/actio
 
 ### pre-commit
 
-???
+conda install pre-commit; pre-commit install; git commit -m "pre-commit test"
 
 works in [this action from last month](https://github.com/GIS-sys/gismlops/actions/runs/7251817901/job/19754958960) and [this action from hw1](https://github.com/GIS-sys/gismlops/actions/runs/6383320460)
 
@@ -29,15 +35,17 @@ in this final version (as well as in [hw1 commit](https://github.com/GIS-sys/gis
 
 ### dvc
 
-???
+dvc init; dvc remote add -d storage gdrive://1Z3JfbS00SLrhHPVh7igikSy4Dbbug-z; dvc add data/; dvc commit; dvc push; dvc pull;
+
+works in current version, but I admit that it didn't work in hw3 version, and wasn't present in hw2 version
 
 ### hydra
 
-???
+used in train, infer (hydra.main) and test (initialize and compose), both in hw2 and current
 
 ### logging
 
-???
+in utils I use `tags={"commit": git\_version()}`, ???
 
 ### inference
 
@@ -45,12 +53,12 @@ in this final version (as well as in [hw1 commit](https://github.com/GIS-sys/gis
 
 ### codestyle
 
-1. as of the final version, the only commented code is in ./gismlops/conf/config.yaml (for cuda devices option)
+1. as of the final version, the only commented code is in ./gismlops/conf/config.yaml (for cuda devices option and mlflow\_tracking\_uri)
 2. as of the final version, no directory is empty (except for triton/model\_repository/onnx-clothing/1/)
-3. ???
-4. ???
-5. ???
-6. ???
+3. common parts are either written in utils or configs
+4. don't have code in \_\_init\_\_ files
+5. commands.py for poetry commands, data.py for dataloader, dvc\_manager.py and git\_manager.py for dvc and git, model.py for Model, utils.py for common code, train.py and infer.py for train and inference
+6. the only hardcoded values are: data/ folder in data.py and log folders in utils.py
 7. there are no binary files in github, and the only folder being pushed in dvc is data/ (also .logs, but not automatically)
 
 ## HW3
@@ -61,7 +69,7 @@ in this final version (as well as in [hw1 commit](https://github.com/GIS-sys/gis
 
 ### .md
 
-???
+research description is in triton/README.md
 
 
 
